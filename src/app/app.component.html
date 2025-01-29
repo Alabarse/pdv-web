@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<app-sidebar class="sidebar" *ngIf="isSidebarVisible"></app-sidebar>
+<div>
+  <router-outlet></router-outlet>
+</div>
+

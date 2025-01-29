@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class LoginComponent {
     if (this.formLogin.valid) {
       this.authService.autenticaUsuario(this.formLogin.value).subscribe({
         next: (ret: any) => {
-          console.log(ret);
+          this.router.navigate(['/home']);
         },
         error: (erro: any) => {
           console.error(erro);
